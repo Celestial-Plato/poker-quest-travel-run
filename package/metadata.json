@@ -1,0 +1,16 @@
+{
+  "id": 3814137517,
+  "name": "TRAVEL RUN — 22 Starting Bonuses",
+  "language": "schinese",
+  "tags": [
+    "World Modifiers",
+    "Balance"
+  ],
+  "description": "Requires the included first-run installer. Windows v63 / build 2021 only.",
+  "visibility": 2,
+  "imagePath": "",
+  "localContentPath": "",
+  "lastChangeNote": "Travel Run 0.3.2: portable first-run installer and separate local saves.",
+  "minVersion": 63,
+  "maxVersion": 63
+}

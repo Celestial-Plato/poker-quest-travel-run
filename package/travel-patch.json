@@ -1,0 +1,188 @@
+{
+  "version": "0.3.2",
+  "gameVersion": 63,
+  "build": 2021,
+  "gameSha256": "edcc38527f3321c7324f9700a40d318ef178bc26c0563814835ffea603aa802b",
+  "payloadSha256": "5167d63de6e42ac857694cc9b5e73e1a6640a5bef99716c00a1a167430b38700",
+  "exports": {
+    "tr_enemy_draw": 4192,
+    "tr_entry": 4256,
+    "tr_footer": 4368,
+    "tr_header": 4464,
+    "tr_menu_array": 4528,
+    "tr_mods": 4624,
+    "tr_setting": 4992,
+    "tr_show": 5440,
+    "tr_state": 12320
+  },
+  "patches": [
+    {
+      "rva": 16057816,
+      "expected": "e843cf3bff",
+      "function": "tr_menu_array",
+      "kind": "call"
+    },
+    {
+      "rva": 16057883,
+      "expected": "e800cf3bff",
+      "function": "tr_menu_array",
+      "kind": "call"
+    },
+    {
+      "rva": 16057950,
+      "expected": "e8bdce3bff",
+      "function": "tr_menu_array",
+      "kind": "call"
+    },
+    {
+      "rva": 16058017,
+      "expected": "e87ace3bff",
+      "function": "tr_menu_array",
+      "kind": "call"
+    },
+    {
+      "rva": 16062136,
+      "expected": "e883190000",
+      "function": "tr_setting",
+      "kind": "call"
+    },
+    {
+      "rva": 16062273,
+      "expected": "e8fa180000",
+      "function": "tr_setting",
+      "kind": "call"
+    },
+    {
+      "rva": 8384913,
+      "expected": "e85a5488ff",
+      "function": "tr_mods",
+      "kind": "call"
+    },
+    {
+      "rva": 8387731,
+      "expected": "e848722901",
+      "function": "tr_entry",
+      "kind": "call"
+    },
+    {
+      "rva": 8385406,
+      "expected": "e8ad09b0ff",
+      "function": "tr_header",
+      "kind": "call"
+    },
+    {
+      "rva": 24885278,
+      "expected": "e8fd2c0000",
+      "function": "tr_show",
+      "kind": "call"
+    },
+    {
+      "rva": 24899206,
+      "expected": "e895f6ffff",
+      "function": "tr_show",
+      "kind": "call"
+    },
+    {
+      "rva": 19820718,
+      "expected": "e8dd6e8f00",
+      "function": "tr_footer",
+      "kind": "call"
+    },
+    {
+      "rva": 848454,
+      "expected": "e8e55f9000",
+      "function": "tr_enemy_draw",
+      "kind": "call"
+    }
+  ],
+  "staticPatches": [
+    {
+      "rva": 579504,
+      "expected": "48895c24104889",
+      "replacement": "c6411b0031c0c3",
+      "purpose": "Disable cloud saves in the private copy"
+    }
+  ],
+  "runtimeFunctions": [
+    [
+      4192,
+      4255,
+      9368
+    ],
+    [
+      4256,
+      4360,
+      9176
+    ],
+    [
+      4368,
+      4460,
+      9360
+    ],
+    [
+      4464,
+      4522,
+      9184
+    ],
+    [
+      4528,
+      4620,
+      9112
+    ],
+    [
+      4624,
+      4982,
+      9140
+    ],
+    [
+      4992,
+      5425,
+      9120
+    ],
+    [
+      5440,
+      5474,
+      9192
+    ],
+    [
+      5474,
+      5485,
+      9208
+    ],
+    [
+      5485,
+      5498,
+      9232
+    ],
+    [
+      5498,
+      5661,
+      9252
+    ],
+    [
+      5661,
+      5922,
+      9276
+    ],
+    [
+      5922,
+      5943,
+      9296
+    ],
+    [
+      5943,
+      6071,
+      9312
+    ],
+    [
+      6071,
+      6264,
+      9328
+    ],
+    [
+      6264,
+      6346,
+      9344
+    ]
+  ]
+}

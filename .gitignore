@@ -1,0 +1,12 @@
+__pycache__/
+*.pyc
+build/
+dist/
+*.exe
+*.dll
+*.obj
+*.lib
+*.exp
+*.sol
+*.spec
+release-manifest.json
