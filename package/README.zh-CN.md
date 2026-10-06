@@ -1,6 +1,6 @@
 # TRAVEL RUN 安装说明
 
-版本：0.3.3。支持 Windows x64 原版 Poker Quest v63 / build 2021。
+版本：0.3.4。支持 Windows x64 原版 Poker Quest v63 / build 2021。
 
 ## 第一次安装
 

@@ -8,7 +8,7 @@
 
 ## 玩家安装
 
-1. 在 [Releases](https://github.com/Celestial-Plato/poker-quest-travel-run/releases) 下载 `TravelRun-Installer-v0.3.3.zip` 和校验文件，解压整个 ZIP。
+1. 在 [Releases](https://github.com/Celestial-Plato/poker-quest-travel-run/releases) 下载 `TravelRun-Installer-v0.3.4.zip` 和校验文件，解压整个 ZIP。
 2. 关闭游戏，运行解压后的 `InstallTravelRun.exe`。无需安装 Python。
 3. 安装器读取 Steam 注册表、Steam 库配置和游戏安装清单定位目录；找不到或找到多份安装时，会弹出文件选择窗口，请选择游戏的 `PokerQuest.exe`。
 4. 从 Steam 启动游戏，选择 **New Run → Travel Run**，选择一项增益并开始新一局。

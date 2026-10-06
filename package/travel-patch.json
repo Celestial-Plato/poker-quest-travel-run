@@ -1,9 +1,9 @@
 {
-  "version": "0.3.3",
+  "version": "0.3.4",
   "gameVersion": 63,
   "build": 2021,
   "gameSha256": "edcc38527f3321c7324f9700a40d318ef178bc26c0563814835ffea603aa802b",
-  "payloadSha256": "471bb0c9ae4e4e113d1a1789b4ec8d8facb99ebe92695a444bea65e625775b51",
+  "payloadSha256": "5c63f7ce7b8afd73b8dffa8ef652189f2974970a13be20ce0dc8758e865e6f27",
   "exports": {
     "tr_enemy_draw": 4192,
     "tr_entry": 4256,

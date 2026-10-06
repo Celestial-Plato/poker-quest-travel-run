@@ -1,6 +1,6 @@
 # TRAVEL RUN
 
-Version 0.3.3. Windows x64, Poker Quest v63 / build 2021 only.
+Version 0.3.4. Windows x64, Poker Quest v63 / build 2021 only.
 
 1. Subscribe and wait for Steam to finish downloading.
 2. Download the matching standalone installer ZIP using the link on the Workshop page and extract it to a writable folder.

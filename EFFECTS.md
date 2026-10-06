@@ -1,4 +1,4 @@
-# TRAVEL RUN — 0.3.3
+# TRAVEL RUN — 0.3.4
 
 每次选一项 / Choose one bonus per run.
 
@@ -16,7 +16,7 @@
 | Shielded | 开局获得 Attack Resist 1。 | Start with Attack Resist 1. |
 | Combat Restoration | 祝福抚平旅途中的伤口。每次战斗胜利后随机回复 1–7 点生命。 | A blessing mends your wounds. Restore a random 1-7 life after each combat victory. |
 | Clear Sight | 每轮揭示敌人的一张暗牌，并显示闪电预览。 | Reveal one hidden enemy card each round and always preview Lightning. |
-| Slow Foes | 每回合敌人有 25% 概率少抽一张明牌。 | Enemies have a 25% chance to draw one fewer visible card each round. |
+| Slow Foes | 每回合敌人有 33% 概率少抽一张明牌。 | Enemies have a 33% chance to draw one fewer visible card each round. |
 | Energy Master | 每次地图移动额外获得 1 能量。 | Gain 1 extra energy per world map movement. |
 | Gem Master | 每次地图移动获得 1 宝石。 | Gain 1 gem each world map movement. |
 | Sensitivity | 每次实际回复生命获得 3 能量。 | Gain 3 energy whenever you gain life. |
