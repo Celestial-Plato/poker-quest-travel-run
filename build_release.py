@@ -13,7 +13,7 @@ PACKAGE = ROOT / 'package'
 FILES = ('add/WORLD_MODIFIERS.csv', 'EFFECTS.md', 'game_picker.py', 'install_travel_run.py',
          'InstallTravelRun.cmd', 'metadata.json', 'README.en.md', 'README.zh-CN.md',
          'RestoreOriginal.cmd', 'runtime-licenses.txt', 'steam_paths.py', 'travel-code.bin',
-         'travel-patch.json', 'travel_patch.py')
+         'travel-patch.json', 'travel_patch.py', 'travel_mods.py', 'travel_saves.py', 'RestoreSaves.cmd')
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)

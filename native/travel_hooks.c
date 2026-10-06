@@ -3,6 +3,7 @@
 unsigned __int64 __readgsqword(unsigned long);
 #pragma intrinsic(__readgsqword)
 #include "travel_strings.h"
+#include "travel_backup.h"
 typedef unsigned long long U64;
 typedef unsigned int U32;
 typedef struct { int length, padding; const char *text; } String;
@@ -19,6 +20,35 @@ static int mode;
 static void *header;
 __declspec(dllexport) U64 tr_state[16];
 
+static int backup_progress(void) {
+    typedef void *(*Module)(const TR_WCHAR *);
+    typedef void *(*Proc)(void *,const char *);
+    Module module=*(Module *)(base()+0x1cc12b0);
+    Proc proc=*(Proc *)(base()+0x1cc11a8);
+    void *kernel=module((const TR_WCHAR *)L"kernel32.dll");
+    TR_BACKUP_API api;String path;static TR_WCHAR root[2048];int i;
+    if(!kernel)return 0;
+    api.createDir=(void *)proc(kernel,"CreateDirectoryW");api.attributes=(void *)proc(kernel,"GetFileAttributesW");
+    api.time=(void *)proc(kernel,"GetSystemTime");api.findFirst=(void *)proc(kernel,"FindFirstFileW");
+    api.findNext=(void *)proc(kernel,"FindNextFileW");api.findClose=(void *)proc(kernel,"FindClose");
+    api.copy=(void *)proc(kernel,"CopyFileW");api.createFile=(void *)proc(kernel,"CreateFileW");
+    api.close=(void *)proc(kernel,"CloseHandle");api.error=(void *)proc(kernel,"GetLastError");
+    if(!api.createDir||!api.attributes||!api.time||!api.findFirst||!api.findNext||!api.findClose||
+       !api.copy||!api.createFile||!api.close||!api.error)return 0;
+    FN(0x1061620,String *(*)(String *))(&path);
+    if(path.length<1||path.length>=2046||!path.text)return 0;
+    if((*(U32 *)(path.text-4))&0x200000) {
+        for(i=0;i<path.length;i++)root[i]=((const TR_WCHAR *)path.text)[i];root[i]=0;
+    } else {
+        typedef int (*Convert)(U32,U32,const char *,int,TR_WCHAR *,int);
+        Convert convert=(Convert)proc(kernel,"MultiByteToWideChar");
+        if(!convert)return 0;
+        i=convert(65001,8,path.text,path.length,root,2046);if(!i)return 0;root[i]=0;
+    }
+    if(root[i-1]!='/'&&root[i-1]!='\\'){root[i++]='\\';root[i]=0;}
+    return tr_save_snapshot(root,&api);
+}
+
 __declspec(dllexport) void *tr_menu_array(void **out,const int *items,int count) {
     int next[5]={5,6,7,10,9};
     if(count==5 && items[0]==5 && items[1]==6 && items[2]==7 && items[3]==8 && items[4]==9) {
@@ -31,7 +61,15 @@ static void *open_mode(void **out,void *controller,int selected) {
     mode=selected;
     return FN(0x17bb770,void *(*)(void **,void *))(out,controller);
 }
-static void *open_travel(void **out,void *controller) { return open_mode(out,controller,1); }
+static void *open_travel(void **out,void *controller) {
+    if(!backup_progress()) {
+        typedef int (*Message)(void *,const char *,const char *,U32);
+        (*(Message *)(base()+0x1cc13e8))(0,"Could not back up your saves. Travel Run was not opened. Check free space and folder permissions, then try again.","Travel Run backup failed",0x10);
+        *out=0;return out;
+    }
+    tr_state[11]++;
+    return open_mode(out,controller,1);
+}
 static void *open_challenge(void **out,void *controller) { return open_mode(out,controller,0); }
 __declspec(dllexport) void tr_setting(void *screen,int id,String *label,String *tip,void **callback,unsigned char enabled) {
     void *controller=P(screen,0x240),*cb=0;

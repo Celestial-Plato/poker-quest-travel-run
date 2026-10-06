@@ -10,7 +10,7 @@
   "visibility": 0,
   "imagePath": "",
   "localContentPath": "",
-  "lastChangeNote": "Travel Run 0.3.5",
+  "lastChangeNote": "Travel Run 0.3.6: shared original-game progress and Mod Manager data; preserve XP, hero unlocks and other applied mods. Automatically back up progress before opening Travel Run. No save selection during upgrades.",
   "minVersion": 63,
   "maxVersion": 63
 }

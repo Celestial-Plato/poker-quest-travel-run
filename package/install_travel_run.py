@@ -9,10 +9,13 @@ import os
 from pathlib import Path
 import shutil
 import sys
+import subprocess
 
 import steam_paths
 import travel_patch
 from game_picker import choose_game,SelectionCancelled
+from travel_mods import prepare_shared_mods
+from travel_saves import snapshot,restore_snapshot
 
 PACKAGE=Path(sys.executable).resolve().parent if getattr(sys,'frozen',False) else Path(__file__).resolve().parent
 ORIGINAL_GAME_SHA256='edcc38527f3321c7324f9700a40d318ef178bc26c0563814835ffea603aa802b'
@@ -46,60 +49,32 @@ def state_root():
     if not os.environ.get('LOCALAPPDATA'):raise RuntimeError('LOCALAPPDATA is unavailable.')
     return (Path(os.environ['LOCALAPPDATA'])/'Playsaurus/PokerQuestTravelRun').resolve()
 
+def ensure_game_closed():
+    result=subprocess.run(['tasklist','/FI','IMAGENAME eq PokerQuest.exe','/FO','CSV','/NH'],capture_output=True,text=True,errors='replace',check=True)
+    if any(row and row[0].lower()=='pokerquest.exe' for row in csv.reader(result.stdout.splitlines())):
+        raise RuntimeError('Close Poker Quest before changing the installation or restoring saves.')
+
 def initialize_profile(game,root):
-    profile=root/'appdata/Playsaurus/PokerQuest'
-    marker=profile/'travel-profile.json'
-    if marker.exists():return profile
-    profile.mkdir(parents=True,exist_ok=True)
-    normal=Path(os.environ['APPDATA'])/'Playsaurus/PokerQuest'
-    source=normal
+    profile=Path(os.environ['APPDATA'])/'Playsaurus/PokerQuest'
     record=game/travel_patch.INSTALL_RECORD
     if record.exists():
         previous=json.loads(record.read_text(encoding='utf-8'))
-        # Migrate saves from a verified earlier Travel Run installation.
         if (previous.get('originalSha256')==ORIGINAL_GAME_SHA256
                 and previous.get('installedSha256')==digest(game/'PokerQuest.exe')):
             old=Path(previous.get('profile',''))
-            if old.is_dir() and (old/'travel-profile.json').exists():source=old
-    for path in source.glob('*.sol'):
-        destination=profile/path.name
-        if not destination.exists():shutil.copy2(path,destination)
-    for name in ('resolution.txt','last_version.txt'):
-        destination=profile/name
-        if (source/name).is_file() and not destination.exists():shutil.copy2(source/name,destination)
-    atomic_json(marker,{'initializedAt':datetime.datetime.now().astimezone().isoformat(),
-                       'copiedFrom':str(source),'savesAreSeparate':True})
+            if old.resolve()!=profile.resolve() and old.is_dir() and (old/'travel-profile.json').exists():
+                backup=snapshot(old,root/'backups','legacy-travel')
+                atomic_json(root/'legacy-progress-backup.json',{'profile':str(old),'backup':str(backup)})
+    profile.mkdir(parents=True,exist_ok=True)
     return profile
 
-def prepare_data(game,profile,spec):
+def prepare_data(game,profile,spec,root=None):
     original=game/'csv/WORLD_MODIFIERS.csv'
     if digest(original)!=ORIGINAL_CSV_SHA256:raise RuntimeError('The original modifier table differs from supported v63 data.')
-    addon=(PACKAGE/'add/WORLD_MODIFIERS.csv').read_bytes()
-    target=profile/'modded_csvs/csv/WORLD_MODIFIERS.csv'
-    target.parent.mkdir(parents=True,exist_ok=True)
-    # Match the official loader's append format without executing its game launcher.
-    combined=original.read_bytes().rstrip(b'\r\n')+b'\n'+addon.lstrip(b'\r\n')
-    text=combined.decode('utf-8-sig')
-    rows=list(csv.DictReader(io.StringIO(text)))
-    if len({r['id'] for r in rows})!=len(rows):raise RuntimeError('Duplicate modifier IDs in merged data.')
-    for name in ('TRAVEL BALANCED slow-foes','TRAVEL BALANCED sensitivity','TRAVEL Impostor'):
-        if not any(r['internalName']==name for r in rows):raise RuntimeError('Travel modifier is missing: '+name)
-    # Reproduce the official loader's complete local CSV overlay. These files
-    # come from the player's installation, never from the Workshop package.
-    for source in (game/'csv').glob('*.csv'):
-        if source.name=='WORLD_MODIFIERS.csv':continue
-        destination=target.parent/source.name
-        staged=destination.with_suffix('.tmp')
-        shutil.copy2(source,staged);os.replace(staged,destination)
-    temporary=target.with_suffix('.tmp');temporary.write_bytes(combined);os.replace(temporary,target)
-    (profile/'modded_imgs').mkdir(exist_ok=True)
-    mods=profile/'mods';mods.mkdir(exist_ok=True)
-    (mods/'mods.txt').write_text('TravelRun\n',encoding='utf-8')
-    mod=mods/'TravelRun/add';mod.mkdir(parents=True,exist_ok=True)
-    shutil.copy2(PACKAGE/'add/WORLD_MODIFIERS.csv',mod/'WORLD_MODIFIERS.csv')
-    shutil.copy2(PACKAGE/'metadata.json',mods/'TravelRun/metadata.json')
-    (profile/'is_modded.txt').write_text('1',encoding='ascii')
-    atomic_json(profile/'travel-data-version.json',{'version':spec['version'],'csvSha256':digest(target)})
+    report=prepare_shared_mods(game,profile,PACKAGE/'add/WORLD_MODIFIERS.csv',PACKAGE/'metadata.json',
+                               (root or state_root())/'backups')
+    atomic_json((root or state_root())/'shared-mods.json',report)
+    return report
 
 def cache_tools(root,manifest):
     cache=root/'installed-tools'
@@ -113,6 +88,7 @@ def cache_tools(root,manifest):
     return cache
 
 def install(game):
+    ensure_game_closed()
     manifest,spec=validate_package()
     original=travel_patch.original_executable(game,spec)
     if digest(game/'csv/WORLD_MODIFIERS.csv')!=ORIGINAL_CSV_SHA256:
@@ -120,7 +96,8 @@ def install(game):
     target=game/'PokerQuest.exe';before=digest(target)
     root=state_root();root.mkdir(parents=True,exist_ok=True)
     profile=initialize_profile(game,root)
-    prepare_data(game,profile,spec)
+    snapshot(profile,root/'backups','before-install')
+    prepare_data(game,profile,spec,root)
     build_dir=root/'cache';build_dir.mkdir(exist_ok=True)
     built=build_dir/'PokerQuest.patched.exe'
     report=travel_patch.patch_executable(game,built,profile,package=PACKAGE)
@@ -136,7 +113,7 @@ def install(game):
     atomic_json(record,{'version':spec['version'],'installedAt':datetime.datetime.now().astimezone().isoformat(),
                         'originalSha256':ORIGINAL_GAME_SHA256,'installedSha256':report['sha256'],
                         'backup':str(backup),'profile':str(profile),'package':str(cache),
-                        'installer':str(cache/'InstallTravelRun.exe')})
+                        'installer':str(cache/'InstallTravelRun.exe'),'sharedProgress':True,'sharedMods':True})
     temporary=game/'PokerQuest.TravelRun.tmp'
     try:
         shutil.copy2(built,temporary)
@@ -149,11 +126,13 @@ def install(game):
         raise
     atomic_json(root/'installation.json',{'gameDirectory':str(game),'version':spec['version'],'profile':str(profile)})
     print('Travel Run installed. Start Poker Quest from Steam, then choose New Run > Travel Run.')
-    print('Separate saves: '+str(profile))
+    print('Shared saves and Mod Manager data: '+str(profile))
+    print('Travel Run automatically backs up progress before opening: '+str(profile/'TravelRun-backups'))
     print('Original executable backup: '+str(backup))
     print('Restore tool: '+str(cache/'RestoreOriginal.cmd'))
 
 def restore(game):
+    ensure_game_closed()
     target=game/'PokerQuest.exe'
     if digest(target)==ORIGINAL_GAME_SHA256:
         print('The original game executable is already installed.');return
@@ -171,7 +150,7 @@ def restore(game):
     finally:
         if temporary.exists():temporary.unlink()
     print('Original game executable restored. Original saves and mods were not changed.')
-    print('Travel Run saves and backups were kept.')
+    print('Shared progress, other mods and all backups were kept.')
 
 def locate_game(explicit):
     if explicit:return steam_paths.find_game(explicit)
@@ -186,11 +165,19 @@ def main():
     parser.add_argument('--game-dir',type=Path,help='Override automatic Steam detection.')
     parser.add_argument('--restore',action='store_true')
     parser.add_argument('--check',action='store_true',help='Check package files and locate the game without installing.')
+    parser.add_argument('--restore-saves',type=Path,help='Restore one complete progress snapshot, after backing up current progress.')
     parser.add_argument('--no-pause',action='store_true')
     args=parser.parse_args()
     code=0
     try:
         if os.name!='nt':raise RuntimeError('This package supports Windows x64 only.')
+        if args.restore_saves:
+            ensure_game_closed()
+            normal=Path(os.environ['APPDATA'])/'Playsaurus/PokerQuest'
+            root=state_root()
+            recovery=restore_snapshot(normal,args.restore_saves,root/'backups')
+            print('Progress restored. Current progress was backed up to: '+str(recovery))
+            return 0
         game=locate_game(args.game_dir)
         print('Poker Quest folder: '+str(game))
         if args.check:

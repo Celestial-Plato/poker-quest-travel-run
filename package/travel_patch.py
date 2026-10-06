@@ -61,25 +61,8 @@ def patch_executable(game,output,profile,package=HERE):
         raw=pe.raw(patch['rva']);expected=bytes.fromhex(patch['expected']);replacement=bytes.fromhex(patch['replacement'])
         if len(expected)!=len(replacement) or data[raw:raw+len(expected)]!=expected:raise RuntimeError('Unexpected code for '+patch['purpose'])
         data[raw:raw+len(expected)]=replacement
-    # Native save path is hardcoded by App.getSaveDir(); APPDATA alone is insufficient.
-    text=str(profile.resolve()).replace('\\','/')+'/'
-    # hxcpp HX_ / HX_W constant headers; UTF16 is required for Unicode user paths.
-    # The supported native executable contains both constant encodings.
-    if text.isascii():
-        path=text.encode('ascii');units=path;flags=0x80100000;terminator=b'\0';length=len(path)
-    else:
-        path=text.encode('utf-16-le');length=len(path)//2
-        units=struct.unpack('<'+'H'*length,path);flags=0x80300000;terminator=b'\0\0'
-    h=0
-    for unit in units:h=(h*223+unit)&0xffffffff
-    literal=append(struct.pack('<II',h,flags)+path+terminator,8)+8
-    redirect_rva=va+align(len(body),16)
-    redirect=bytearray(b'\xc7\x01'+struct.pack('<I',length)+b'\x48\x8d\x05')
-    redirect+=struct.pack('<i',literal-(redirect_rva+len(redirect)+4));redirect+=bytes.fromhex('48 89 41 08 48 89 c8 c3')
-    assert append(redirect)==redirect_rva
-    site=0x1061620;raw=pe.raw(site)
-    assert data[raw:raw+5]==bytes.fromhex('48 89 5c 24 08')
-    data[raw:raw+5]=branch(b'\xe9',site,redirect_rva)
+    # Keep App.getSaveDir and every caller original: progress, CSV/image mods,
+    # settings and the external Mod Manager all use the normal shared profile.
     runtime.sort();pdata=append(b''.join(struct.pack('<III',*row) for row in runtime),4)
     rp=align(len(data),fa);rs=align(len(body),fa)
     data.extend(b'\0'*(rp-len(data)));data.extend(body);data.extend(b'\0'*(rs-len(body)))
@@ -98,4 +81,4 @@ def patch_executable(game,output,profile,package=HERE):
         finally:
             if temporary.exists():temporary.unlink()
     assert hashlib.sha256((game/'PokerQuest.exe').read_bytes()).hexdigest()==installed_hash
-    return {'payloadRva':va,'exports':{k:va+v for k,v in spec['exports'].items()},'copy':str(output),'sha256':hashlib.sha256(data).hexdigest()}
+    return {'payloadRva':va,'exports':{k:va+v for k,v in spec['exports'].items()},'copy':str(output),'sha256':hashlib.sha256(data).hexdigest(),'sharedProgress':True,'sharedMods':True}

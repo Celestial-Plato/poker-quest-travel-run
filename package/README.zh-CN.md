@@ -1,6 +1,6 @@
 # TRAVEL RUN 安装说明
 
-版本：0.3.5。支持 Windows x64 原版 Poker Quest v63 / build 2021。
+版本：0.3.6。支持 Windows x64 原版 Poker Quest v63 / build 2021。
 
 ## 第一次安装
 
@@ -27,19 +27,25 @@ TRAVEL RUN 提供 22 项旅途增益，每次选一项。具体数值见 EFFECTS
 
 安装器从玩家本地原版程序生成补丁并替换 `PokerQuest.exe`，原版备份为游戏目录中的 `PokerQuest.before-TravelRun.exe`。发布包不包含原版 EXE、游戏 DLL 或游戏素材。
 
-独立存档固定保存在：
+Travel Run、普通模式的 XP、角色解锁、进度和 Mod Manager 共用原版目录：
 
 ```text
-%LOCALAPPDATA%\Playsaurus\PokerQuestTravelRun\appdata\Playsaurus\PokerQuest
+%APPDATA%\Playsaurus\PokerQuest
 ```
 
-第一次安装会复制已有 `.sol` 进度和显示设置；识别到旧版 TRAVEL RUN 安装时优先复制其独立进度，不覆盖已存在的新目录文件。原版存档不被写入，TRAVEL RUN 的 Steam 云存档关闭。安装后请开始新一局。TRAVEL RUN 的隔离配置只加载本包，不合并其他模组。
+安装和更新直接沿用原版进度，不重置 XP 或角色解锁，无需选择或切换存档。安装后请开始新一局。
+
+安装器保留其他已应用 Mod 的 CSV、图片和启用列表，把 Travel 增益注册成正常数据模组。以后在 Mod Manager 中保留 Travel Run 勾选，勾选 Boss Courts 或其他 Mod 后 Apply，再重启游戏即可；模组之间修改同一数据的冲突仍按原版加载顺序处理。
+
+每次从 New Run 打开 Travel Run 时，会先把现有 `.sol` 存档复制到 `%APPDATA%\Playsaurus\PokerQuest\TravelRun-backups\<时间>`。目录名使用 UTC 时间并以 Z 标记，每次生成新快照；备份失败时不会打开 Travel Run。备份是当时的全部进度，手动还原会回到那个时间点。
+
+需要还原进度时，关闭游戏，双击 `RestoreSaves.cmd`，粘贴要恢复的备份文件夹路径。工具会先备份当前进度，验证所选快照完整后再还原。也可用 `InstallTravelRun.exe --restore-saves "备份目录"`。升级和安装前的备份位于 `%LOCALAPPDATA%\Playsaurus\PokerQuestTravelRun\backups`。此工具与还原游戏程序的 `RestoreOriginal.cmd` 分开。
 
 ## 更新与恢复
 
-新版本发布后，从 GitHub 下载并完整解压对应的新 ZIP，关闭游戏，再运行其中的安装器。新包覆盖增益数据及补丁，保留独立存档。保留的旧版 56 条隐藏定义用于早期 TRAVEL RUN 存档兼容，新菜单仅展示 22 项。
+新版本发布后，从 GitHub 下载并完整解压对应的新 ZIP，关闭游戏，再运行其中的安装器。新包更新 Travel 增益和程序补丁，保留共用进度及其他模组。保留的旧版 56 条隐藏定义用于早期 TRAVEL RUN 存档兼容，新菜单仅展示 22 项。
 
-恢复原版：关闭游戏，双击 `RestoreOriginal.cmd`；或运行 `InstallTravelRun.exe --restore`。只恢复已校验的原版程序，保留 TRAVEL RUN 存档与备份。随后从 Steam 启动游戏即可使用原版存档。
+恢复原版程序：关闭游戏，双击 `RestoreOriginal.cmd`；或运行 `InstallTravelRun.exe --restore`。只恢复已校验的原版程序，共用进度和备份保留。需要停止加载 Travel 增益时，在 Mod Manager 取消勾选 Travel Run 并 Apply；其他模组按自己的勾选状态继续使用。
 
 安装器还会把还原工具缓存到：
 
