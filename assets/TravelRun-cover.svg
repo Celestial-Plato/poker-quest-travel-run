@@ -1,0 +1,96 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1000" viewBox="0 0 1600 1000" role="img" aria-labelledby="title desc">
+  <title id="title">TRAVEL RUN — 22 STARTING BONUSES</title>
+  <desc id="desc">Choose a blessing to guide your journey. A golden compass and illustrated blessing cards above a winding mountain trail.</desc>
+  <defs>
+    <linearGradient id="night" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#091f29"/><stop offset=".55" stop-color="#173d42"/><stop offset="1" stop-color="#102d35"/></linearGradient>
+    <radialGradient id="glow"><stop stop-color="#80a68a" stop-opacity=".28"/><stop offset="1" stop-color="#80a68a" stop-opacity="0"/></radialGradient>
+    <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#fbdf9b"/><stop offset=".46" stop-color="#d4ae65"/><stop offset="1" stop-color="#9d7a40"/></linearGradient>
+    <linearGradient id="paper" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#fff4d6"/><stop offset="1" stop-color="#e3cc9e"/></linearGradient>
+    <linearGradient id="badge" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#eccc89"/><stop offset="1" stop-color="#d5ad63"/></linearGradient>
+    <linearGradient id="ridge" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#2a5b5d"/><stop offset="1" stop-color="#14383f"/></linearGradient>
+    <pattern id="dots" width="24" height="24" patternUnits="userSpaceOnUse"><circle cx="12" cy="12" r=".7" fill="#c2dbbb" opacity=".07"/></pattern>
+    <filter id="shadow" x="-.5" y="-.5" width="2" height="2"><feDropShadow dx="0" dy="18" stdDeviation="17" flood-color="#03151d" flood-opacity=".5"/></filter>
+    <clipPath id="canvas"><rect x="30" y="30" width="1540" height="940" rx="10"/></clipPath>
+    <g id="spark" fill="url(#gold)"><path d="M0-17 4-4 17 0 4 4 0 17-4 4-17 0-4-4Z"/></g>
+    <g id="corner" fill="none" stroke="#c4a66d" stroke-width="2"><path d="M0 73V19Q0 0 19 0H73M10 55V23Q10 10 23 10H55"/><path d="M31 0Q38 28 0 31M0 0 20 20"/><circle cx="20" cy="20" r="4" fill="#c4a66d"/></g>
+    <g id="leaf" fill="none" stroke="#b79b65" stroke-width="2"><path d="M0 0Q-17-27-8-51M-7-18Q-36-18-27-36Q-10-33-7-18M-10-30Q14-37 7-52Q-12-49-10-30"/></g>
+  </defs>
+  <rect width="1600" height="1000" fill="url(#night)"/>
+  <rect width="1600" height="1000" fill="url(#dots)"/>
+  <g clip-path="url(#canvas)">
+    <ellipse cx="1200" cy="380" rx="570" ry="530" fill="url(#glow)"/>
+    <g fill="none" stroke="#91b4a7" stroke-width="1" opacity=".08">
+      <path d="M820 50V950M1010 50V950M1200 50V950M1390 50V950M800 230H1590M800 420H1590M800 610H1590M800 800H1590"/>
+      <circle cx="1200" cy="420" r="350"/><circle cx="1200" cy="420" r="420"/>
+    </g>
+    <path d="M730 770 915 485 1030 591 1170 390 1295 545 1430 332 1610 690V1020H730Z" fill="#2b5154" opacity=".48"/>
+    <path d="m1360 443 70-111 87 173-71-84-16-50-14 34-29 10Z" fill="#9bb6a0" opacity=".18"/>
+    <path d="M610 886Q800 728 961 805T1280 753T1640 725V1020H600Z" fill="url(#ridge)"/>
+    <path d="M790 1050C887 916 1160 952 1227 864S1402 724 1451 664" fill="none" stroke="#799688" stroke-width="42" opacity=".22"/>
+    <path d="M790 1050C887 916 1160 952 1227 864S1402 724 1451 664" fill="none" stroke="#d5b978" stroke-width="2" stroke-dasharray="7 13" opacity=".4"/>
+    <path d="M-30 928Q202 836 426 928T826 945V1030H-30Z" fill="#071f29" opacity=".68"/>
+    <g transform="translate(1190 382)">
+      <circle r="210" fill="none" stroke="#c6b07a" stroke-width="1" opacity=".22"/>
+      <circle r="190" fill="none" stroke="#8da69a" stroke-width="2" opacity=".4"/>
+      <circle r="171" fill="none" stroke="#c6b07a" stroke-width="1" opacity=".22"/>
+      <path d="M0-229V-162M0 162V229M-229 0H-162M162 0H229M-154-154-118-118M154-154 118-118M-154 154-118 118M154 154 118 118" fill="none" stroke="#c6b07a" stroke-width="2" opacity=".55"/>
+      <path d="M-112-112 0-46 112-112 46 0 112 112 0 46-112 112-46 0Z" fill="#6e9589" opacity=".38"/>
+      <path d="M0-164 37-37 164 0 37 37 0 164-37 37-164 0-37-37Z" fill="url(#gold)"/>
+      <path d="M0-164V0L37-37ZM164 0H0L37 37ZM0 164V0L-37 37ZM-164 0H0L-37-37Z" fill="#fff0bc" opacity=".72"/>
+      <circle r="29" fill="#15383d" stroke="#e1c481" stroke-width="3"/><circle r="9" fill="#e7ce91"/>
+      <text y="-244" text-anchor="middle" font-family="Georgia, serif" font-size="22" fill="#e8d39d">N</text>
+    </g>
+    <g filter="url(#shadow)">
+      <g transform="translate(944 694) rotate(-16)">
+        <rect x="-112" y="-152" width="224" height="304" rx="14" fill="url(#paper)" stroke="#be9b5b" stroke-width="3"/>
+        <rect x="-100" y="-140" width="200" height="280" rx="8" fill="none" stroke="#8b7652" stroke-opacity=".45"/>
+        <text x="-81" y="-92" font-family="Georgia, serif" font-size="33" fill="#31545a">A</text>
+        <path d="M0-68 52 0 0 68-52 0Z" fill="#31545a"/>
+        <path d="M0-48 37 0 0 48-37 0Z" fill="none" stroke="#ecdfbc" stroke-width="2"/>
+        <text x="81" y="110" text-anchor="end" font-family="Georgia, serif" font-size="33" fill="#31545a">A</text>
+      </g>
+      <g transform="translate(1369 692) rotate(15)">
+        <rect x="-112" y="-152" width="224" height="304" rx="14" fill="url(#paper)" stroke="#be9b5b" stroke-width="3"/>
+        <rect x="-100" y="-140" width="200" height="280" rx="8" fill="none" stroke="#8b7652" stroke-opacity=".45"/>
+        <text x="-81" y="-92" font-family="Georgia, serif" font-size="33" fill="#a25e4b">A</text>
+        <path d="M0 62-47 10C-100-52-26-93 0-44C26-93 100-52 47 10Z" fill="#a25e4b"/>
+        <text x="81" y="110" text-anchor="end" font-family="Georgia, serif" font-size="33" fill="#a25e4b">A</text>
+      </g>
+      <g transform="translate(1156 698) rotate(-2)">
+        <rect x="-119" y="-178" width="238" height="356" rx="14" fill="url(#paper)" stroke="#d7b26b" stroke-width="3"/>
+        <rect x="-105" y="-164" width="210" height="328" rx="8" fill="#194047"/>
+        <rect x="-94" y="-153" width="188" height="306" rx="4" fill="none" stroke="#ba9e69" stroke-width="1"/>
+        <path d="M-72-95Q0-185 72-95V81Q0 145-72 81Z" fill="none" stroke="#a99261" stroke-width="1"/>
+        <circle cy="-6" r="69" fill="none" stroke="#e8cd8c" stroke-width="2"/>
+        <circle cy="-6" r="58" fill="none" stroke="#d2b371" stroke-width="1" opacity=".6"/>
+        <path d="M0-87 15-23 65-6 15 10 0 75-15 10-65-6-15-23Z" fill="url(#gold)"/>
+        <circle cy="-6" r="9" fill="#fff0be"/>
+        <g transform="translate(-41 123)"><use href="#leaf"/></g>
+        <g transform="translate(41 123) scale(-1 1)"><use href="#leaf"/></g>
+        <text y="-116" text-anchor="middle" font-family="Georgia, serif" font-size="18" letter-spacing="5" fill="#e9ce91">XXII</text>
+        <path d="M-28 128H28" stroke="#ddc18a"/><circle cy="128" r="3" fill="#ddc18a"/>
+      </g>
+    </g>
+    <use href="#spark" transform="translate(915 351) scale(.7)"/>
+    <use href="#spark" transform="translate(1398 151) scale(.65)"/>
+    <use href="#spark" transform="translate(1445 465) scale(.48)"/>
+    <use href="#spark" transform="translate(994 179) scale(.36)"/>
+  </g>
+  <rect x="30" y="30" width="1540" height="940" rx="10" fill="none" stroke="#b99b62" stroke-width="2"/>
+  <rect x="46" y="46" width="1508" height="908" rx="3" fill="none" stroke="#b99b62" stroke-opacity=".32"/>
+  <use href="#corner" transform="translate(61 61)"/><use href="#corner" transform="translate(1539 61) scale(-1 1)"/>
+  <use href="#corner" transform="translate(61 939) scale(1 -1)"/><use href="#corner" transform="translate(1539 939) scale(-1 -1)"/>
+  <g>
+    <text x="112" y="161" font-family="Segoe UI, sans-serif" font-size="23" letter-spacing="5" fill="#a7c6b5">POKER QUEST · COMMUNITY MOD</text>
+    <path d="M114 209H253" stroke="#bda36a" stroke-width="2"/><use href="#spark" transform="translate(271 209) scale(.26)"/>
+    <text x="104" y="375" font-family="Georgia, serif" font-size="152" font-weight="bold" letter-spacing="-4" fill="#fff0cc">TRAVEL</text>
+    <text x="105" y="537" font-family="Georgia, serif" font-size="166" font-weight="bold" letter-spacing="-2" fill="#fff0cc">RUN</text>
+    <text x="113" y="630" font-family="Segoe UI, sans-serif" font-size="31" fill="#c9d9c7">Choose a blessing to guide your journey.</text>
+    <g transform="translate(112 711)">
+      <path d="M17 0H473L490 17V69L473 86H17L0 69V17Z" fill="url(#badge)"/>
+      <path d="M22 7H468L483 22V64L468 79H22L7 64V22Z" fill="none" stroke="#775b35" stroke-opacity=".42"/>
+      <text x="245" y="55" text-anchor="middle" font-family="Segoe UI, sans-serif" font-weight="bold" font-size="29" letter-spacing="1.5" fill="#152f35">22 STARTING BONUSES</text>
+    </g>
+    <text x="113" y="866" font-family="Segoe UI, sans-serif" font-size="20" letter-spacing="3" fill="#9cb8ad">ONE BLESSING. A NEW JOURNEY.</text>
+  </g>
+</svg>

@@ -1,5 +1,9 @@
 # Poker Quest TRAVEL RUN
 
+![TRAVEL RUN — Choose a blessing to guide your journey.](assets/TravelRun-cover.png)
+
+[Editable SVG cover](assets/TravelRun-cover.svg)
+
 为 Poker Quest 增加类似 Challenge Run 的 TRAVEL RUN 选择列表，每局选择一项增益，共 22 项。替换 Custom Run 菜单入口。支持 **Windows x64 / 原版 v63、build 2021**；不支持的程序哈希会拒绝安装。
 
 ## 玩家安装
