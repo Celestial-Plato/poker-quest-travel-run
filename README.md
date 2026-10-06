@@ -9,7 +9,7 @@
 3. 安装器读取 Steam 注册表、Steam 库配置和游戏安装清单定位目录；找不到或找到多份安装时，会弹出文件选择窗口，请选择游戏的 `PokerQuest.exe`。
 4. 从 Steam 启动游戏，选择 **New Run → Travel Run**，选择一项增益并开始新一局。
 
-工坊数据条目：[3814137517](https://steamcommunity.com/sharedfiles/filedetails/?id=3814137517)。工坊公开权限仍在处理，条目可能暂时无法访问。**GitHub 的完整安装包可独立使用**；订阅工坊本身不会安装原生菜单。
+工坊数据条目：[3814137517](https://steamcommunity.com/sharedfiles/filedetails/?id=3814137517)。工坊条目已公开，可正常订阅。**GitHub 的完整安装包可独立使用**；订阅工坊本身不会安装原生菜单。
 
 安装器核对原版程序和 CSV 的哈希，备份原版程序，再安装菜单补丁及匹配的增益数据。更新时下载完整新版本 ZIP 后重新运行安装器。详见包内中英文说明与 [增益列表](EFFECTS.md)。
 
@@ -43,6 +43,6 @@ py -3.11 build_release.py
 
 Download and extract the complete installer ZIP from Releases, close Poker Quest, run InstallTravelRun.exe, then launch through Steam and choose New Run → Travel Run. No Python is required for players. If Steam discovery fails, select PokerQuest.exe in the file picker.
 
-Windows x64 / Poker Quest v63, build 2021 only. The native menu needs this installer; subscribing to the Workshop CSV/docs alone is insufficient. The GitHub package works independently while Workshop publication permissions are unresolved. Separate local saves, Steam Cloud disabled for Travel Run. RestoreOriginal.cmd restores the verified original executable.
+Windows x64 / Poker Quest v63, build 2021 only. The native menu needs this installer; subscribing to the Workshop CSV/docs alone is insufficient. The GitHub package also works independently of a Workshop subscription. Separate local saves, Steam Cloud disabled for Travel Run. RestoreOriginal.cmd restores the verified original executable.
 
 **Build and static package checks completed; in-game validation remains pending.** This is an unofficial community modification.
