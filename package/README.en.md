@@ -1,6 +1,6 @@
 # TRAVEL RUN
 
-Version 0.3.2. Windows x64, Poker Quest v63 / build 2021 only. Both the original executable and modifier table must match the supported hashes.
+Version 0.3.2. Windows x64, Poker Quest v63 / build 2021 only.
 
 1. Subscribe and wait for Steam to finish downloading.
 2. Download the matching standalone installer ZIP using the link on the Workshop page and extract it to a writable folder.
@@ -9,7 +9,7 @@ Version 0.3.2. Windows x64, Poker Quest v63 / build 2021 only. Both the original
 
 Subscription alone cannot install the native menu. Do not use only the original ModManager Apply/Launch for this package. The installer handles both the local executable patch and CSV data. It never launches the game.
 
-Steam registry entries and library manifests locate your installation automatically. If discovery fails, its manifests cannot be read, or multiple installations are found, a Windows file picker asks you to select `PokerQuest.exe`. Cancel to exit without installing/restoring. Selecting another executable prompts you to try again; game-version verification still applies to the selected file. If the picker is unavailable, run `InstallTravelRun.exe --game-dir "D:\YourSteamLibrary\steamapps\common\Poker Quest"`. Chinese/non-ASCII user paths are supported by the generated save-path literal. Unsupported or unknown modified executables are refused.
+Steam registry entries and library manifests locate your installation automatically. If discovery fails, its manifests cannot be read, or multiple installations are found, a Windows file picker asks you to select `PokerQuest.exe`. Cancel to exit without installing/restoring. Selecting another executable prompts you to try again; game-version verification still applies to the selected file. If the picker is unavailable, run `InstallTravelRun.exe --game-dir "D:\YourSteamLibrary\steamapps\common\Poker Quest"`. Chinese/non-ASCII user paths are supported by the generated save-path literal.
 
 The executable is patched locally from your own game installation. The original backup is `PokerQuest.before-TravelRun.exe` in the game folder. No original game executable, DLL, artwork or save is distributed.
 
@@ -21,6 +21,6 @@ To restore: close the game and run `RestoreOriginal.cmd` or `InstallTravelRun.ex
 
 Steam file verification, game updates or reinstallation can replace the patch. Re-run the installer only for a supported game version. `InstallTravelRun.exe --check` checks package files and executable compatibility without installing or launching the game.
 
-This package has been built and statically inspected. In-game validation is pending. See EFFECTS.md for the choices and values.
+See EFFECTS.md for the choices and values.
 
 This separate installer includes the matching CSV and menu patch. Do not copy Workshop CSV manually. Subscribing tracks data/docs and updates; Workshop downloads alone cannot update the installed menu patch.

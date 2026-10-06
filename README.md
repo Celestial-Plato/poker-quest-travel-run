@@ -4,7 +4,7 @@
 
 [Editable SVG cover](assets/TravelRun-cover.svg)
 
-为 Poker Quest 增加类似 Challenge Run 的 TRAVEL RUN 选择列表，每局选择一项增益，共 22 项。替换 Custom Run 菜单入口。支持 **Windows x64 / 原版 v63、build 2021**；不支持的程序哈希会拒绝安装。
+22 项新增开局增益，每局选择一项祝福。支持 **Windows x64 / 原版 v63、build 2021**。
 
 ## 玩家安装
 
@@ -15,7 +15,7 @@
 
 工坊数据条目：[3814137517](https://steamcommunity.com/sharedfiles/filedetails/?id=3814137517)。工坊条目已公开，可正常订阅。**GitHub 的完整安装包可独立使用**；订阅工坊本身不会安装原生菜单。
 
-安装器核对原版程序和 CSV 的哈希，备份原版程序，再安装菜单补丁及匹配的增益数据。更新时下载完整新版本 ZIP 后重新运行安装器。详见包内中英文说明与 [增益列表](EFFECTS.md)。
+安装器会备份原版程序，并安装菜单补丁和增益数据。更新时下载完整新版本 ZIP 后重新运行安装器。详见包内中英文说明与 [增益列表](EFFECTS.md)。
 
 ## 存档与恢复
 
@@ -49,4 +49,4 @@ Download and extract the complete installer ZIP from Releases, close Poker Quest
 
 Windows x64 / Poker Quest v63, build 2021 only. The native menu needs this installer; subscribing to the Workshop CSV/docs alone is insufficient. The GitHub package also works independently of a Workshop subscription. Separate local saves, Steam Cloud disabled for Travel Run. RestoreOriginal.cmd restores the verified original executable.
 
-**Build and static package checks completed; in-game validation remains pending.** This is an unofficial community modification.
+This is an unofficial community modification.

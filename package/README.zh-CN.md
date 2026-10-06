@@ -1,6 +1,6 @@
 # TRAVEL RUN 安装说明
 
-版本：0.3.2。支持 Windows x64 原版 Poker Quest v63 / build 2021。安装器会校验程序及原版变种表；其他版本或无法识别的程序修改不会被覆盖。
+版本：0.3.2。支持 Windows x64 原版 Poker Quest v63 / build 2021。
 
 ## 第一次安装
 
@@ -23,7 +23,7 @@ InstallTravelRun.exe --game-dir "D:\YourSteamLibrary\steamapps\common\Poker Ques
 
 ## 内容与存档
 
-TRAVEL RUN 使用类似 CHALLENGE RUN 的选择列表，替换 CUSTOM RUN 入口；每次选一项，共 22 项。具体数值见 EFFECTS.md。Impostor 保留原始效果。
+TRAVEL RUN 提供 22 项旅途增益，每次选一项。具体数值见 EFFECTS.md。
 
 安装器从玩家本地原版程序生成补丁并替换 `PokerQuest.exe`，原版备份为游戏目录中的 `PokerQuest.before-TravelRun.exe`。发布包不包含原版 EXE、游戏 DLL 或游戏素材。
 
@@ -55,6 +55,5 @@ TRAVEL RUN 使用类似 CHALLENGE RUN 的选择列表，替换 CUSTOM RUN 入口
 
 `InstallTravelRun.exe --check` 只检查包和支持的程序版本，不安装或启动游戏。失败时保留窗口信息，并反馈游戏版本和具体报错。不要发送存档或个人路径给公开工坊评论。
 
-本发布包已完成构建和静态文件检查，尚未通过游戏内验证。安装器不会启动游戏。
 
 本独立安装包包含该版本的增益数据和菜单补丁，不需要手动复制工坊 CSV。工坊订阅用于查看数据、说明和更新；仅更新工坊下载文件不能更新已安装的菜单补丁。
