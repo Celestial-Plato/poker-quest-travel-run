@@ -8,12 +8,12 @@
 
 ## 玩家安装
 
-1. 在 [Releases](https://github.com/Celestial-Plato/poker-quest-travel-run/releases) 下载 `TravelRun-Installer-v0.3.4.zip` 和校验文件，解压整个 ZIP。
+1. 在 [Releases](https://github.com/Celestial-Plato/poker-quest-travel-run/releases) 下载 `TravelRun-Installer-v0.3.5.zip` 和校验文件，解压整个 ZIP。
 2. 关闭游戏，运行解压后的 `InstallTravelRun.exe`。无需安装 Python。
 3. 安装器读取 Steam 注册表、Steam 库配置和游戏安装清单定位目录；找不到或找到多份安装时，会弹出文件选择窗口，请选择游戏的 `PokerQuest.exe`。
 4. 从 Steam 启动游戏，选择 **New Run → Travel Run**，选择一项增益并开始新一局。
 
-工坊数据条目：[3814137517](https://steamcommunity.com/sharedfiles/filedetails/?id=3814137517)。工坊条目已公开，可正常订阅。**GitHub 的完整安装包可独立使用**；订阅工坊本身不会安装原生菜单。
+两种分发渠道：GitHub 提供完整 ZIP，无需订阅工坊；[创意工坊](https://steamcommunity.com/sharedfiles/filedetails/?id=3814137517)发布包包含同一份安装器、补丁和增益数据。任选一种方式安装，功能和独立存档相同。两种方式均需关闭游戏并手动运行一次安装器。
 
 安装器会备份原版程序，并安装菜单补丁和增益数据。更新时下载完整新版本 ZIP 后重新运行安装器。详见包内中英文说明与 [增益列表](EFFECTS.md)。
 
@@ -31,14 +31,14 @@
 
 ```powershell
 py -3.11 -m pip install -r requirements-build.txt
-py -3.11 build_release.py
+py -3.11 build_release.py --channel all
 ```
 
-这会使用仓库中已有的原生补丁构建独立安装器和 ZIP，不运行安装器或游戏。需要重编原生补丁时，在 x64 Visual Studio 开发者终端运行：
+这会编译一次共用安装器，并生成 GitHub 和工坊两个完整包；不运行安装器或游戏。也可使用 `--channel github` 或 `--channel workshop` 只生成一种渠道。工坊上传目录为 `dist/TravelRun-Workshop/content/TravelRun`。需要重编原生补丁时，在 x64 Visual Studio 开发者终端运行：
 
 ```powershell
 py -3.11 native/build_native.py
-py -3.11 build_release.py
+py -3.11 build_release.py --channel all
 ```
 
 原生补丁使用对应游戏版本的固定地址；支持新游戏版本前必须重新分析并审核地址和事件，不应放宽哈希检查。重新构建的二进制可能因编译器和时间戳不同而有不同哈希，构建脚本会更新对应清单。

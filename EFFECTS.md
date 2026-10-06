@@ -1,4 +1,4 @@
-# TRAVEL RUN — 0.3.4
+# TRAVEL RUN — 0.3.5
 
 每次选一项 / Choose one bonus per run.
 

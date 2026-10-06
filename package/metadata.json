@@ -7,10 +7,10 @@
     "Balance"
   ],
   "description": "Requires the included first-run installer. Windows v63 / build 2021 only.",
-  "visibility": 2,
+  "visibility": 0,
   "imagePath": "",
   "localContentPath": "",
-  "lastChangeNote": "Travel Run 0.3.2: portable first-run installer and separate local saves.",
+  "lastChangeNote": "Travel Run 0.3.5",
   "minVersion": 63,
   "maxVersion": 63
 }

@@ -4,8 +4,8 @@
 
 ## 第一次安装
 
-1. 从 GitHub Releases 下载对应版本的完整安装器 ZIP。无需订阅创意工坊。
-2. 完整解压 ZIP 到可写目录，找到本说明和 `InstallTravelRun.exe`；不要只取出单个 EXE。
+1. 订阅工坊条目，等待 Steam 下载完成。
+2. 从工坊条目查看条目 ID。打开游戏所在 Steam 库的 `steamapps\workshop\content\1184820\<条目ID>` 文件夹，找到本说明和 `InstallTravelRun.exe`。
 3. 关闭游戏，双击 `InstallTravelRun.exe`（或 `InstallTravelRun.cmd`）。玩家不需要安装 Python。
 4. 提示安装成功后，从 Steam 启动 Poker Quest。选择 New Run → Travel Run，再选择一项增益。
 
@@ -37,7 +37,7 @@ TRAVEL RUN 提供 22 项旅途增益，每次选一项。具体数值见 EFFECTS
 
 ## 更新与恢复
 
-新版本发布后，从 GitHub 下载并完整解压对应的新 ZIP，关闭游戏，再运行其中的安装器。新包覆盖增益数据及补丁，保留独立存档。保留的旧版 56 条隐藏定义用于早期 TRAVEL RUN 存档兼容，新菜单仅展示 22 项。
+工坊更新下载后，关闭游戏，再运行一次安装器。新包覆盖增益数据及补丁，保留独立存档。保留的旧版 56 条隐藏定义用于早期 TRAVEL RUN 存档兼容，新菜单仅展示 22 项。
 
 恢复原版：关闭游戏，双击 `RestoreOriginal.cmd`；或运行 `InstallTravelRun.exe --restore`。只恢复已校验的原版程序，保留 TRAVEL RUN 存档与备份。随后从 Steam 启动游戏即可使用原版存档。
 
@@ -47,7 +47,7 @@ TRAVEL RUN 提供 22 项旅途增益，每次选一项。具体数值见 EFFECTS
 %LOCALAPPDATA%\Playsaurus\PokerQuestTravelRun\installed-tools\RestoreOriginal.cmd
 ```
 
-删除下载的安装包不会自动恢复程序。请先运行还原工具；安装包已删除时仍可使用上述缓存工具。恢复后要重新安装可再次运行安装器。
+取消订阅不会自动恢复程序。请先恢复再取消订阅；若已取消，仍可使用上述缓存工具。恢复后要重新安装可再次运行安装器。
 
 若 Steam 验证文件完整性、更新或重装游戏，程序补丁可能被覆盖；检查版本后重新运行安装器。检测到不支持的游戏版本时会停止，不能强制套用旧补丁。
 
