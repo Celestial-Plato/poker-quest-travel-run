@@ -4,6 +4,7 @@ static const struct { unsigned int hash,flags;char text[41]; } l_tooltip = {0x80
 static const struct { unsigned int hash,flags;char text[41]; } l_title_travel = {0x8075da43,0x80100000,"Choose a blessing to guide your journey."};
 static const struct { unsigned int hash,flags;char text[14]; } l_title_challenge = {0x7b971d0e,0x80100000,"challenge run"};
 static const struct { unsigned int hash,flags;char text[13]; } l_footer = {0xe611fb4b,0x80100000,"Travel run: "};
+static const struct { unsigned int hash,flags;char text[15]; } l_restoration_roll = {0x2e9ff30d,0x80100000,"travelheal1to7"};
 #define TR_COUNT 22
 static const struct {unsigned int hash,flags;char text[5];} tr_ids[TR_COUNT] = {
 {0x25d893e1,0x80100000,"9901"},

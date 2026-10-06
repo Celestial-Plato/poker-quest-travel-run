@@ -64,7 +64,7 @@
 9868,TRAVEL Impostor,1,0,0,0,0,,,Impostor,"Your starting items are swapped out with the items from another hero, chosen randomly.",0,0,0,onGameStart,deleteItems,,,,onGameStart,gainRandomHeroItems,,,,,,,,,,,,,,,,,,,,,,,
 9909,TRAVEL BALANCED strong-attacks,1,0,0,0,0,,,Strong Attacks,Your attack damage is increased by 25%.,0,0,0,onGameStart,set,heroAttackModifier,1.25,,,,,,,,,,,,,,,,,,,,,,,,,,
 9910,TRAVEL BALANCED shielded,1,0,0,0,0,,,Shielded,Start with Attack Resist 1.,0,0,0,onGameStart,add,resist,attack,1,,,,,,,,,,,,,,,,,,,,,,,,,
-9911,TRAVEL BALANCED combat-restoration,1,0,0,0,0,,,Combat Restoration,Heal 7 life after each combat victory.,0,0,0,onCombatWin,add,life,7,,,,,,,,,,,,,,,,,,,,,,,,,,
+9911,TRAVEL BALANCED combat-restoration,1,0,0,0,0,,,Combat Restoration,A blessing mends your wounds. Restore a random 1-7 life after each combat victory.,0,0,0,onCombatWin,add,life,travelheal1to7,,,,,,,,,,,,,,,,,,,,,,,,,,
 9912,TRAVEL BALANCED clear-sight,1,0,0,0,0,,,Clear Sight,Reveal one hidden enemy card each round and always preview Lightning.,0,0,0,onCombatRoundStart,reveal,1,,,onCombatStart,alwaysShowNextLightning,,,,,,,,,,,,,,,,,,,,,,,
 9913,TRAVEL BALANCED slow-foes,1,0,0,0,0,,,Slow Foes,Enemies have a 25% chance to draw one fewer visible card each round.,0,0,0,onCombatDrawPhase,monsterDrawWithChance,0.25,-1,visible,,,,,,,,,,,,,,,,,,,,,,,,,
 9914,TRAVEL BALANCED energy-master,1,0,0,0,0,,,Energy Master,Gain 1 extra energy per world map movement.,0,0,0,onMapMove,add,energy,1,,,,,,,,,,,,,,,,,,,,,,,,,,

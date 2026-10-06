@@ -111,6 +111,26 @@ __declspec(dllexport) void tr_enemy_draw(void *drawInfo) {
         I(drawInfo,0x18)=I(drawInfo,0x20);
     }
 }
+/* Only the p2 calculation in ModifierEvent.adjustStat is intercepted. The
+   explicit Travel marker leaves all original numeric/formula amounts intact.
+   Use the same seeded RNG entry as rollLightning0to100; keep the original stat
+   update, maximum-life cap and healing listeners after calculating the amount. */
+__declspec(dllexport) double tr_restoration_amount(void *event,String *amount) {
+    int i,n;
+    const char *marker=l_restoration_roll.text;
+    for(i=0;marker[i];i++) {
+        if(i>=amount->length || amount->text[i]!=marker[i])
+            return FN(0x16ab600,double (*)(void *,String *))(event,amount);
+    }
+    if(i!=amount->length)
+        return FN(0x16ab600,double (*)(void *,String *))(event,amount);
+    /* Positive truncation gives seven integer buckets; clamp the RNG's possible
+       1.0 endpoint so the inclusive range remains 1..7. */
+    n=1+(int)(FN(0x16b5e20,double (*)(void *))(event)*7.0);
+    if(n>7)n=7;
+    if(n<1)n=1;
+    return (double)n;
+}
 #ifdef TR_TEST
 __declspec(dllexport) void tr_selftest(void *controller) {
     void *out=0,*screen,*selected,*hero;int i;
